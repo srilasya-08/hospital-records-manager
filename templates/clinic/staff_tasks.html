@@ -1,0 +1,4 @@
+{% extends "clinic/base.html" %}{% block title %}My upload tasks · CareLedger{% endblock %}{% block content %}
+<div class="section-heading"><div><div class="eyebrow">STAFF WORKSPACE</div><h1>My upload tasks</h1><p class="muted">Only tasks assigned to your account appear here.</p></div></div>
+<div class="task-list">{% for task in tasks %}<a class="task-card" href="{% url 'staff_task' task.task_code %}"><span><strong>Visit {{ task.visit.visit_number }}</strong><small>Task {{ task.task_code|slice:":8" }}</small></span><span class="task-action">Enter details <b>→</b></span></a>{% empty %}<div class="empty-state"><h2>All caught up</h2><p>New assigned upload tasks will appear here.</p></div>{% endfor %}</div>
+{% endblock %}

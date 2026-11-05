@@ -1,0 +1,15 @@
+{% extends "clinic/base.html" %}
+{% block title %}Sign in · CareLedger{% endblock %}
+{% block content %}
+<div class="login-layout">
+  <section class="welcome-panel"><div class="eyebrow">CARE, CONNECTED</div><h1>Every visit,<br><em>in the right hands.</em></h1><p>A secure workspace for clinic teams to keep care organized and patient records connected.</p><div class="welcome-note"><span class="shield">✳</span><span>Private by design<br><small>Access is limited by your role.</small></span></div><div class="panel-art" aria-hidden="true"><span class="art-ring ring-one"></span><span class="art-ring ring-two"></span><span class="art-cross">+</span><span class="art-dot dot-one"></span><span class="art-dot dot-two"></span></div></section>
+  <section class="login-panel"><div class="login-card"><div class="eyebrow">WELCOME BACK</div><h2>Sign in to your workspace</h2><p class="muted">Use the account provided by your clinic administrator.</p>
+    {% if form.errors %}<div class="error-box" role="alert">We couldn’t sign you in with those details. Check your username and password and try again.</div>{% endif %}
+    <form method="post" class="login-form">{% csrf_token %}<input type="hidden" name="next" value="{{ next }}">
+      <label for="id_username">Username</label><input id="id_username" name="username" type="text" autocomplete="username" required autofocus>
+      <label for="id_password">Password</label><input id="id_password" name="password" type="password" autocomplete="current-password" required>
+      <button class="primary-button" type="submit">Sign in <span aria-hidden="true">→</span></button>
+    </form><div class="login-foot"><span class="lock">▣</span>Protected clinic access</div>
+  </div><p class="help-text">Need access? Contact your clinic administrator.</p></section>
+</div>
+{% endblock %}

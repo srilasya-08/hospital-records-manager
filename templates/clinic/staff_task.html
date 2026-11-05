@@ -1,0 +1,9 @@
+{% extends "clinic/base.html" %}{% block title %}Visit upload · CareLedger{% endblock %}{% block content %}
+<a class="back-link" href="{% url 'staff_tasks' %}">← My tasks</a><div class="section-heading"><div><div class="eyebrow">STAFF ENTRY · TASK {{ task.task_code|slice:":8" }}</div><h1>Visit details</h1><p class="muted">Enter the information provided for this visit. Existing patient records are not shown in this workspace.</p></div></div>
+<form method="post" enctype="multipart/form-data" class="form-card">{% csrf_token %}{{ form.non_field_errors }}
+  <div class="form-grid"><div><label for="id_visit_date">Visit date</label>{{ form.visit_date }}{{ form.visit_date.errors }}</div><div><label for="id_temperature_c">Temperature</label><div class="input-unit">{{ form.temperature_c }}<span>°C</span></div>{{ form.temperature_c.errors }}</div><div><label for="id_next_recommended_visit">Next recommended visit</label>{{ form.next_recommended_visit }}{{ form.next_recommended_visit.errors }}</div></div>
+  <label for="id_staff_notes">Visit details</label>{{ form.staff_notes }}{{ form.staff_notes.errors }}
+  <div class="upload-area"><div class="upload-icon">↑</div><div><strong>Attach a document</strong><p>PDF, PNG, or JPEG · up to 15 MB</p>{{ form.document }}{{ form.document.errors }}</div></div>
+  <label for="id_document_title">Document label <span class="optional">(optional)</span></label>{{ form.document_title }}
+  <div class="form-actions"><span>After submitting, this task is sent to the doctor for review.</span><button class="primary-button" type="submit">Submit visit details <span>→</span></button></div>
+</form>{% endblock %}
