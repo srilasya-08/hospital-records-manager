@@ -46,6 +46,8 @@ class Visit(models.Model):
     weight_kg = models.DecimalField(max_digits=5, decimal_places=1, null=True, blank=True,
         validators=[MinValueValidator(0.5), MaxValueValidator(500)])
     other_symptoms = models.TextField(blank=True)
+    # Retained from the original visit schema; older local databases require this column.
+    staff_notes = models.TextField(blank=True)
     vomiting = models.BooleanField(null=True, blank=True)
     vomiting_days = models.PositiveSmallIntegerField(null=True, blank=True)
     diagnosis = models.TextField(blank=True)
@@ -126,3 +128,4 @@ class AuditEvent(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
